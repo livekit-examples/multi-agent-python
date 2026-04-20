@@ -147,7 +147,7 @@ class LeadEditorAgent(Agent):
         """
 
         childrens_editor = SpecialistEditorAgent("children's books", chat_ctx=context.session._chat_ctx)
-        # here we are creating a ChilrensEditorAgent with the full chat history,
+        # here we are creating a Editor Agent specialized on children's books with the full chat history,
         # as if they were there in the room with the user the whole time.
         # we could also omit it and rely on the userdata to share context.
 
@@ -161,18 +161,18 @@ class LeadEditorAgent(Agent):
         self,
         context: RunContext[StoryData],
     ):
-        """Called when the user has provided enough information to suggest a children's book.
+        """Called when the user has provided enough information to suggest a Novel.
         """
 
-        childrens_editor = SpecialistEditorAgent("novels", chat_ctx=context.session._chat_ctx)
-        # here we are creating a ChilrensEditorAgent with the full chat history,
+        novels_editor = SpecialistEditorAgent("novels", chat_ctx=context.session._chat_ctx)
+        # here we are creating a Editor Agent specialized on novels with the full chat history,
         # as if they were there in the room with the user the whole time.
         # we could also omit it and rely on the userdata to share context.
 
         logger.info(
-            "switching to the children's book editor with the provided user data: %s", context.userdata
+            "switching to the novel book editor with the provided user data: %s", context.userdata
         )
-        return childrens_editor, "Let's switch to the children's book editor."
+        return novels_editor, "Let's switch to the novel book editor."
 
 
 class SpecialistEditorAgent(Agent):
